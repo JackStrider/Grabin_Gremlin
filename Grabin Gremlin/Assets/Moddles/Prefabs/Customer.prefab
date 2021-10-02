@@ -138,12 +138,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830b7b9182ca5f841ab11999f52e6f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerName: 
+  age: 0
+  mood: 100
   material:
   - {fileID: 2100000, guid: 972fc58276735c24b81a9de388a2385f, type: 2}
   - {fileID: 2100000, guid: 2f536eda94b2beb44b0bfe0eaf8b8cbc, type: 2}
   - {fileID: 2100000, guid: 02540d0c8f7c6c449a28e97dbcbac982, type: 2}
   - {fileID: 2100000, guid: 18e83d3bc75986f40885f7a729cd74ea, type: 2}
   - {fileID: 2100000, guid: eb2908743e1fb9e4f8fce0f68f4fa2c2, type: 2}
+  possibleItems:
+  - {fileID: -927199367670048503, guid: 28f74285d5c625042a8abde1d57c430d, type: 3}
+  - {fileID: -927199367670048503, guid: e423e7842a9108d47b144906296f4085, type: 3}
+  chosenItem: {fileID: 0}
 --- !u!95 &2634964902928808667
 Animator:
   serializedVersion: 3

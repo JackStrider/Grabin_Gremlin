@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Customer : MonoBehaviour
 {
@@ -19,24 +20,53 @@ public class Customer : MonoBehaviour
 
     Animator anim;
 
-    int offer;
+    Gremlin gremlin;
 
+    //The current price in haggle
+    public int offer;
+
+    //Possible items
     [SerializeField]
-    GameObject item;
+    GameObject [] possibleItems;
+
+    //Chosen item
+    [SerializeField]
+    GameObject chosenItem;
+
+    //Item quality
+    //1.Damaged
+    //2.Normal
+    //3.Rare
+    //4.Prestine
+    //5.Epic
+    [SerializeField]
+    int quality;
 
     // Start is called before the first frame update
     void Start()
     {
+        gremlin = GameObject.FindGameObjectWithTag("Gremlin").GetComponent<Gremlin>();
+
         //Generates customer stats
         setMood();
         setAge();
         setName();
+
+        //Chose the item Customer wants
+        chosenItem = possibleItems[Random.Range(0,2)];
+
+        //Generate item quality
+        quality = Random.Range(0, gremlin.highestGearLevel);
+
+        //Generate offer
+        offer = Random.Range(10,21) * (quality + 1);
 
         //Setting the renderer and materials
         rend = GetComponentInChildren<Renderer>();
         rend.enabled = true;
         rend.sharedMaterial = material[0];
 
+        //Declaring animator
         anim = gameObject.GetComponent<Animator>();
     }
     
@@ -88,34 +118,48 @@ public class Customer : MonoBehaviour
     //Checks the customers mood to see if it changes or they should should storm out
     public void checkMood()
     {
+        //Customer storms out
         if (mood <= 0)
         {
-            //Customer storms out
             rend.material = material[4];
             anim.SetTrigger("DoneShopping");
         }
 
+        //Customer angry
         else if (mood <= 25)
         {
-            //Customer angry
             rend.material = material[3];
         }
 
+        //Customer is upset
         else if (mood <= 50)
         {
-            //Customer is upset
             rend.material = material[2];
         }
 
+        //Customer alright
         else if (mood <= 75)
         {
-            //Customer alright
             rend.material = material[1];
         }
+
+        //Customer is happy
         else
         {
-            //Customer is happy
             rend.material = material[0];
         }
+    }
+
+    //Generates new offer More button press
+    public void newOffer()
+    {
+        offer = offer + (Random.Range(5, 16) * (gremlin.barterSkill + 1));
+    }
+
+    //Resets the offer to 0
+    public void resetOffer()
+    {
+        offer = 0;
+        gremlin.updateOfferText();
     }
 }
