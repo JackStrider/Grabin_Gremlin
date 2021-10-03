@@ -147,10 +147,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 02540d0c8f7c6c449a28e97dbcbac982, type: 2}
   - {fileID: 2100000, guid: 18e83d3bc75986f40885f7a729cd74ea, type: 2}
   - {fileID: 2100000, guid: eb2908743e1fb9e4f8fce0f68f4fa2c2, type: 2}
+  offer: 0
   possibleItems:
-  - {fileID: -927199367670048503, guid: 28f74285d5c625042a8abde1d57c430d, type: 3}
-  - {fileID: -927199367670048503, guid: e423e7842a9108d47b144906296f4085, type: 3}
+  - {fileID: 325577029395629972, guid: b1fc0e694c2c0c145a1651c883075993, type: 3}
+  - {fileID: 7211648871824073324, guid: 08a25cc3d5d0302468dbb09ee297db57, type: 3}
   chosenItem: {fileID: 0}
+  quality: 0
+  itemSpawnLocation: {fileID: 0}
 --- !u!95 &2634964902928808667
 Animator:
   serializedVersion: 3

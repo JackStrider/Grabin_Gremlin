@@ -29,6 +29,7 @@ public class GimmeMoreButtons : MonoBehaviour
     public void gimme()
     {
         gremlin.gold = gremlin.gold + customer.offer;
+        customer.destroyItem();
         gremlin.updateGoldText();
         customer.resetOffer();
         anim.SetTrigger("DoneShopping");

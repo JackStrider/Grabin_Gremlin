@@ -42,6 +42,11 @@ public class Customer : MonoBehaviour
     [SerializeField]
     int quality;
 
+    //Item location on counter
+    [SerializeField]
+    GameObject itemSpawnLocation;
+    GameObject chosenItemInScene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -122,7 +127,9 @@ public class Customer : MonoBehaviour
         if (mood <= 0)
         {
             rend.material = material[4];
+            destroyItem();
             anim.SetTrigger("DoneShopping");
+            resetOffer();
         }
 
         //Customer angry
@@ -161,5 +168,19 @@ public class Customer : MonoBehaviour
     {
         offer = 0;
         gremlin.updateOfferText();
+    }
+
+    //Places chosen item on counter
+    //Triggered from animation event
+    public void placeItem()
+    {
+        Instantiate(chosenItem, itemSpawnLocation.transform);
+        chosenItemInScene = GameObject.FindGameObjectWithTag("Item");
+    }
+
+    //Destroy chosen item, customer "takes it with them" or not if storming out
+    public void destroyItem()
+    {
+        Destroy(chosenItemInScene);
     }
 }
